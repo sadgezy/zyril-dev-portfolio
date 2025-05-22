@@ -46,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full flex justify-between items-center py-4 px-8 bg-neutral-800/90 shadow-lg z-50 transition-colors duration-300 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 w-full flex justify-between items-center py-3 px-6 md:px-8 bg-neutral-800/20 shadow-md hover:shadow-lg z-50 transition-all duration-300 backdrop-blur-lg">
       <div className="text-2xl font-bold text-neutral-100 cursor-pointer" onClick={() => scrollToSection('about')}>
         Zyril Tamargo
       </div>

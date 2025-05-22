@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar"; // Import the Navbar component
+import AnimatedBackground from "../components/AnimatedBackground"; // Import the new background
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-neutral-900 text-neutral-100`}
       >
+        <AnimatedBackground /> {/* Add the animated background here */}
         <Navbar /> {/* Add Navbar here */}
         {children}
       </body>

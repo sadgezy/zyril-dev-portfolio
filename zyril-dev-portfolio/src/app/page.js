@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <>
       {/* Sections will be rendered in this order */}
-      <About /> {/* This is the top-most content with the iPhone cutout */}
       <HomeSection />
+      <About />
       <Projects />
       <Contact />
     </>
