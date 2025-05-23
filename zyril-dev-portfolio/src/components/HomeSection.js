@@ -39,12 +39,12 @@ const HomeSection = () => {
                             Hi, I'm Zy
                         </h1>
                         <p className="text-lg sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 max-w-md">
-                            I turning ideas into clean, high-performing apps
-                            with Flutter. I like solving real problems, and
-                            keeping the vibe balanced whether I’m coding or
-                            running a team game night. Off-hours, you’ll catch
-                            me playing video games, or spinning up goofy web
-                            pages just to make someone’s day.
+                            I turn ideas into clean, high-performing apps with
+                            Flutter. I like solving real problems, and keeping
+                            the vibe balanced whether I’m coding or running a
+                            team game night. Off-hours, you’ll catch me playing
+                            video games, or spinning up goofy web pages just to
+                            make someone’s day.
                         </p>
 
                         {/* Use Link to navigate to the projects page */}

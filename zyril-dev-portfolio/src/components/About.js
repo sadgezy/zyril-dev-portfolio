@@ -3,16 +3,16 @@ import { useEffect, useRef, useState } from "react";
 
 const projects = [
     {
-        title: "Fleet Maintenance App",
+        title: "Fleet Maintenance and Tracking App",
         desc: "Request and track vehicle repairs via SharePoint backend.",
     },
     {
-        title: "GPS Tracker Module",
-        desc: "Real-time GPS tracking with background location support.",
+        title: "Bill Splitter App",
+        desc: "Split bills with contacts and track money you're owed.",
     },
     {
-        title: "Valentine Page",
-        desc: "Fun interactive web page built just to make her smile.",
+        title: "LOLCODE Interpreter",
+        desc: "Code Interpreter made with python using TKinter",
     },
 ];
 
@@ -28,8 +28,9 @@ const StatusBar = () => (
         </div>
         <div className="w-1/3" />
         <div className="flex items-center space-x-3 w-1/3 justify-end">
-            <div className="flex space-x-[2px]">
-                {[4, 3, 2, 1].map((level) => (
+            <div className="flex items-end space-x-[2px]">
+                {" "}
+                {[1, 2, 3, 4].map((level) => (
                     <div
                         key={level}
                         style={{ height: `${level * 3 + 2}px`, width: "2px" }}
