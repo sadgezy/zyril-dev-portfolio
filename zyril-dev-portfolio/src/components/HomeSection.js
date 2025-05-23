@@ -1,4 +1,5 @@
 'use client'; // For the onClick scroll function
+import Link from 'next/link';
 
 const HomeSection = () => {
   const scrollToProjects = () => {
@@ -34,12 +35,13 @@ const HomeSection = () => {
             <p className="text-lg sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 max-w-md">
               Mobile Application Developer ~ Flutter
             </p>
-            <button
-              onClick={scrollToProjects}
+            {/* Use Link to navigate to the projects page */}
+            <Link
+              href="/projects"
               className="py-3 px-8 text-base font-semibold cursor-pointer bg-sky-500 text-white border-none rounded-lg shadow-md hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75 transition-all duration-200 transform hover:scale-105"
             >
               Explore My Work
-            </button>
+            </Link>
           </div>
         </div>
       </div>

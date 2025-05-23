@@ -1,6 +1,5 @@
 import About from "../components/About";
 import HomeSection from "../components/HomeSection";
-import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 
 export default function Home() {
@@ -9,7 +8,6 @@ export default function Home() {
       {/* Sections will be rendered in this order */}
       <HomeSection />
       <About />
-      <Projects />
       <Contact />
     </>
   );
