@@ -11,9 +11,9 @@
         "deploy": "next build && gh-pages -d out"
     },
     "dependencies": {
-        "@studio-freight/lenis": "^1.0.42",
         "framer-motion": "^12.12.1",
         "gsap": "^3.13.0",
+        "lenis": "^1.3.3",
         "lucide-react": "^0.511.0",
         "next": "15.3.2",
         "react": "^19.0.0",
