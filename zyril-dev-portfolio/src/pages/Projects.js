@@ -62,6 +62,8 @@ const Projects = () => {
                         >
                             <Image
                                 src={project.imageUrl}
+                                width={500}
+                                height={500}
                                 alt={project.title}
                                 style={imgStyle}
                                 className="rounded-t-xl"
