@@ -11,13 +11,13 @@ const Contact = () => {
       </p>
       <div>
         <a
-          href="mailto:your.email@example.com" // Remember to change this!
+          href="mailto:me@zyriltamargo.dev"
           className="py-3 px-6 text-base font-medium cursor-pointer bg-sky-600 text-white border-none rounded-md shadow-md no-underline hover:bg-sky-700 transition-colors"
         >
           Send Me An Email
         </a>
         {/* Add links to LinkedIn, GitHub, etc. here */}
-        {/* Example: <a href="https://linkedin.com/in/yourprofile" className="ml-4 text-blue-600 hover:underline">LinkedIn</a> */}
+        <a href="https://linkedin.com/in/zyrilt2000" className="ml-4 text-blue-600 hover:underline">LinkedIn</a>
       </div>
     </section>
   );

@@ -2,7 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation'; // Import usePathname and useRouter
+import { usePathname } from 'next/navigation'; // useRouter is not strictly needed with Link for all items
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
+const NAV_ITEMS = [
+  { id: 'home', label: 'Home', href: '/#home' },
+  { id: 'projects', label: 'Projects', href: '/projects' },
+  { id: 'contact', label: 'Contact', href: '/#contact' },
+];
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about');
@@ -11,24 +21,38 @@ const Navbar = () => {
     const section = document.getElementById(sectionId);
     if (section) {
       const navbarHeight = document.querySelector('nav')?.offsetHeight || 60; // Adjust if needed
-      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+      const targetY = section.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
-      window.scrollTo({
-        top: sectionTop,
-        behavior: 'smooth',
+      gsap.to(window, {
+        duration: 1.5, // Adjust duration for desired speed
+        scrollTo: {
+          y: targetY,
+          autoKill: true, // Stops the animation if the user scrolls manually
+        },
+        ease: 'power4.out', // Smooth and refined deceleration, less "bouncy"
+
       });
     }
   };
-
   const pathname = usePathname(); // Get current path
-  const router = useRouter(); // Get router instance
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (e) => {
     if (pathname === '/') {
+      e.preventDefault(); // Prevent Link's default navigation if already on the home page
       scrollToSection('home'); // Scroll to home if on the main page
-    } else {
-      router.push('/'); // Navigate to home page if on another route
     }
+    // If not on '/', Link href="/#home" will handle navigation and scroll
+  };
+
+  const handleNavItemClick = (e, navItem) => {
+    // If the link is for a section on the current page (e.g., href is '/#home' and current path is '/')
+    if (navItem.href.startsWith('/#') && pathname === '/') {
+      e.preventDefault(); // Prevent default Link behavior
+      const sectionId = navItem.id; // 'home' or 'contact'
+      scrollToSection(sectionId); // Perform smooth scroll
+    }
+    // Otherwise (e.g., linking to /projects, or linking to /#home from /projects),
+    // let the Next.js Link component handle the navigation.
   };
 
   useEffect(() => {
@@ -73,28 +97,25 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-between items-center py-3 px-6 md:px-8 bg-neutral-800/20 shadow-md hover:shadow-lg z-50 transition-all duration-300 backdrop-blur-lg">
-      <div className="text-2xl font-bold text-neutral-100 cursor-pointer" onClick={handleLogoClick}>
+      <Link href="/#home" onClick={handleLogoClick} className="text-2xl font-bold text-neutral-100 cursor-pointer">
         Zyril Tamargo
-      </div>
+      </Link>
       <ul className="list-none flex gap-8 m-0 p-0">
-        {['home', 'projects', 'contact'].map((item) => (
-          <li key={item}>
-            {item === 'projects' ? (
-              <Link
-                href="/projects"
-                className={`capitalize text-neutral-300 font-medium py-2 px-1 md:px-2 rounded-md cursor-pointer transition-all duration-200 hover:text-sky-300 hover:bg-neutral-700/50 ${isLinkActive(item) ? 'text-sky-400 bg-neutral-700/70' : ''}`}
-              >
-                {item}
-              </Link>
-            ) : (
-              <button onClick={() => scrollToSection(item)} className={`capitalize text-neutral-300 font-medium py-2 px-1 md:px-2 rounded-md cursor-pointer transition-all duration-200 hover:text-sky-300 hover:bg-neutral-700/50 ${isLinkActive(item) ? 'text-sky-400 bg-neutral-700/70' : ''}`}>
-                {item}
-              </button>)}
+        {NAV_ITEMS.map((item) => (
+          <li key={item.id}>
+            <Link
+              href={item.href}
+              onClick={(e) => handleNavItemClick(e, item)}
+              className={`capitalize text-neutral-300 font-medium py-2 px-1 md:px-2 rounded-md cursor-pointer transition-all duration-200 hover:text-sky-300 hover:bg-neutral-700/50 ${
+                isLinkActive(item.id) ? 'text-sky-400 bg-neutral-700/70' : ''
+              }`}
+            >
+              {item.label}
+            </Link>
           </li>
         ))}
       </ul>
     </nav>
   );
 };
-
 export default Navbar;
