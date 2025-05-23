@@ -8,9 +8,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d out"
-
+        "deploy": "next build && gh-pages -d out"
     },
     "dependencies": {
         "@studio-freight/lenis": "^1.0.42",
