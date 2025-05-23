@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const projects = [
     {
@@ -10,12 +11,6 @@ const projects = [
         title: "Bill Splitter App",
         desc: "Split bills with contacts and track money you're owed.",
         imageUrl: "/splitup_logo.png",
-    },
-    {
-        title: "Donation App",
-        desc: "Allows users and organizations to give donations with real-time updates and a user-friendly design.",
-        imageUrl:
-            "https://via.placeholder.com/350x200/C2185B/FFFFFF?text=Donation+App",
     },
     {
         title: "ELBeds",
@@ -34,7 +29,7 @@ const Projects = () => {
                 My Projects
             </h2>
             <p className="text-lg text-neutral-300 mb-10 max-w-xl md:max-w-2xl px-4">
-                Here's a glimpse of what I've been working on.
+                Here&apos;s a glimpse of what I&apos;ve been working on.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl w-full justify-items-center">
@@ -65,52 +60,7 @@ const Projects = () => {
                             key={idx}
                             className="w-72 md:w-80 bg-neutral-800 rounded-xl shadow-lg overflow-hidden text-left transition-all hover:shadow-xl hover:-translate-y-1 border border-neutral-700"
                         >
-                            <img
-                                src={project.imageUrl}
-                                alt={project.title}
-                                style={imgStyle}
-                                className="rounded-t-xl"
-                            />
-                            <div className="p-5">
-                                <h3 className="mt-0 mb-2 text-sky-400 text-lg md:text-xl font-semibold">
-                                    {project.title}
-                                </h3>
-                                <p className="text-sm text-neutral-400 leading-relaxed">
-                                    {project.desc}
-                                </p>
-                            </div>
-                        </div>
-                    );
-                })}
-
-                {/* Bottom row */}
-                {projects.slice(3, 6).map((project, idx) => {
-                    let imgStyle = {
-                        width: "100%",
-                        height: "13rem",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                    };
-
-                    if (
-                        project.title ===
-                            "Fleet Maintenance and Tracking App" ||
-                        project.title === "Bill Splitter App"
-                    ) {
-                        imgStyle.objectFit = "contain";
-                    }
-
-                    if (project.title === "ELBeds") {
-                        imgStyle.objectFit = "cover";
-                        imgStyle.objectPosition = "center 40%";
-                    }
-
-                    return (
-                        <div
-                            key={idx}
-                            className="w-72 md:w-80 bg-neutral-800 rounded-xl shadow-lg overflow-hidden text-left transition-all hover:shadow-xl hover:-translate-y-1 border border-neutral-700"
-                        >
-                            <img
+                            <Image
                                 src={project.imageUrl}
                                 alt={project.title}
                                 style={imgStyle}

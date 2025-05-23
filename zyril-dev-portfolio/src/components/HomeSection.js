@@ -36,15 +36,15 @@ const HomeSection = () => {
                     {/* Text Content Area */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-50 mb-3 md:mb-4">
-                            Hi, I'm Zy
+                            Hi, I&apos;m Zy
                         </h1>
                         <p className="text-lg sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 max-w-md">
                             I turn ideas into clean, high-performing apps with
                             Flutter. I like solving real problems, and keeping
-                            the vibe balanced whether I’m coding or running a
-                            team game night. Off-hours, you’ll catch me playing
-                            video games, or spinning up goofy web pages just to
-                            make someone’s day.
+                            the vibe balanced whether I&apos;m coding or running
+                            a team game night. Off-hours, you&apos;ll catch me
+                            playing video games, or spinning up goofy web pages
+                            just to make someone&apos;s day.
                         </p>
 
                         {/* Use Link to navigate to the projects page */}

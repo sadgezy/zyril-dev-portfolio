@@ -11,8 +11,8 @@ const projects = [
         desc: "Split bills with contacts and track money you're owed.",
     },
     {
-        title: "LOLCODE Interpreter",
-        desc: "Code Interpreter made with python using TKinter",
+        title: "Elbeds",
+        desc: "Web app for finding accommodations in Los Baños, Laguna.",
     },
 ];
 
