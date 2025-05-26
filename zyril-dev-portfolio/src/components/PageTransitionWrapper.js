@@ -12,12 +12,21 @@ const transitionConfig = {
 const blurAmount = "8px";
 const fadeBlurAmount = "4px";
 
+// Define appBasePath similar to Navbar.js
+// This ensures path comparisons work correctly if deployed to a subdirectory (e.g., GitHub Pages)
+const appBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const homeVariants = {
     initial: (prevPath) => ({
-        x: prevPath === "/projects" ? "-100%" : "0%",
-        opacity: prevPath === "/projects" ? 1 : 0,
+        // Check if previous path started with the projects base path
+        x:
+            prevPath && prevPath.startsWith(`${appBasePath}/projects`)
+                ? "-100%"
+                : "0%",
+        opacity:
+            prevPath && prevPath.startsWith(`${appBasePath}/projects`) ? 1 : 0,
         filter:
-            prevPath === "/projects"
+            prevPath && prevPath.startsWith(`${appBasePath}/projects`)
                 ? `blur(${blurAmount})`
                 : `blur(${fadeBlurAmount})`,
     }),
@@ -40,10 +49,17 @@ const homeVariants = {
 
 const projectsVariants = {
     initial: (prevPath) => ({
-        x: prevPath === "/" ? "100%" : "0%",
-        opacity: prevPath === "/" ? 1 : 0,
+        // Check if previous path was the home/root path
+        x:
+            prevPath === appBasePath || (appBasePath === "" && prevPath === "/")
+                ? "100%"
+                : "0%",
+        opacity:
+            prevPath === appBasePath || (appBasePath === "" && prevPath === "/")
+                ? 1
+                : 0,
         filter:
-            prevPath === "/"
+            prevPath === appBasePath || (appBasePath === "" && prevPath === "/")
                 ? `blur(${blurAmount})`
                 : `blur(${fadeBlurAmount})`,
     }),
@@ -85,10 +101,16 @@ export default function PageTransitionWrapper({ children }) {
         previousPathnameRef.current = pathname;
     }, [pathname]);
 
+    // Determine which variants to use based on the current path
     let variantsToUse;
-    if (pathname === "/") {
+    const isHomePage =
+        pathname === appBasePath || (appBasePath === "" && pathname === "/");
+    const isProjectsPage = pathname.startsWith(`${appBasePath}/projects`);
+
+    if (isHomePage) {
         variantsToUse = homeVariants;
-    } else if (pathname === "/projects") {
+    } else if (isProjectsPage) {
+        // This will now cover /projects and /projects/[slug]
         variantsToUse = projectsVariants;
     } else {
         variantsToUse = fallbackVariants;

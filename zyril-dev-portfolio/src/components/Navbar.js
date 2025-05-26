@@ -14,7 +14,10 @@ const NAV_ITEMS = [
     { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
+const appBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const Navbar = () => {
+    // Removed appBasePath from here as it's already global
     const [activeSection, setActiveSection] = useState("about");
 
     const scrollToSection = (sectionId) => {
@@ -39,15 +42,22 @@ const Navbar = () => {
     };
     const pathname = usePathname();
 
+    // Determine if the current page is the main page (hosting home, about, contact sections)
+    // usePathname() returns the path including the basePath.
+    // If basePath is "/zyril-dev-portfolio", the main page's pathname is "/zyril-dev-portfolio".
+    // If no basePath, the main page's pathname is "/".
+    const isMainPage =
+        pathname === appBasePath || (appBasePath === "" && pathname === "/");
+
     const handleLogoClick = (e) => {
-        if (pathname === "/") {
+        if (isMainPage) {
             e.preventDefault();
             scrollToSection("home");
         }
     };
 
     const handleNavItemClick = (e, navItem) => {
-        if (navItem.href.startsWith("/#") && pathname === "/") {
+        if (navItem.href.startsWith("/#") && isMainPage) {
             e.preventDefault();
             const sectionId = navItem.id;
             scrollToSection(sectionId);
@@ -72,8 +82,8 @@ const Navbar = () => {
             }
         );
 
-        // Only observe sections on the main page ('/')
-        if (pathname === "/") {
+        // Only observe sections if we are on the main page
+        if (isMainPage) {
             const sections = ["home", "about", "contact"]; // Projects is now a separate page
 
             sections.forEach((id) => {
@@ -92,9 +102,13 @@ const Navbar = () => {
     }, [pathname]);
 
     const isLinkActive = (item) => {
-        return item === "projects"
-            ? pathname === "/projects"
-            : activeSection === item && pathname === "/";
+        if (item.id === "projects") {
+            // Active if current path starts with /projects (or basePath + /projects)
+            return pathname.startsWith(`${appBasePath}/projects`);
+        }
+        // For main page sections (home, about, contact), active if section is visible AND on main page
+        // Note: item.id is used here as item is the full nav object
+        return activeSection === item.id && isMainPage;
     };
 
     return (
@@ -113,7 +127,7 @@ const Navbar = () => {
                             href={item.href}
                             onClick={(e) => handleNavItemClick(e, item)}
                             className={`capitalize text-neutral-300 font-medium py-2 px-1 md:px-2 rounded-md cursor-pointer transition-all duration-200 hover:text-sky-300 hover:bg-neutral-700/50 ${
-                                isLinkActive(item.id)
+                                isLinkActive(item) // Pass the whole item object
                                     ? "text-sky-400 bg-neutral-700/70"
                                     : ""
                             }`}
