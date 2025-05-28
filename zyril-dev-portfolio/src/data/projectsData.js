@@ -3,32 +3,31 @@ export const projectsData = [
         slug: "fleet-maintenance-app",
         title: "FGV Central",
         desc: "Request and track vehicle repairs via SharePoint backend.",
-        coverImage: "/fgv_logo.png", // Used for project listing cards
+        coverImage: "/fgv_logo.png",
         screenshots: [
             // For project detail page
             {
-                // src: "/screenshots/fgv/screen1.jpg",
+                src: "/screenshots/fgv_sc1.png",
                 alt: "FGV App Login Screen",
             },
             {
-                // src: "/screenshots/fgv/screen2.jpg",
+                src: "/screenshots/fgv_sc2.png",
                 alt: "FGV App Dashboard",
             },
             {
-                // src: "/screenshots/fgv/screen3.jpg",
+                src: "/screenshots/fgv_sc3.png",
                 alt: "FGV App Request Form",
-            }, // 'none' for plain image
+            },
         ],
         longDesc:
             "This application was developed to streamline the process of requesting and tracking vehicle repairs for a large fleet. It integrates with a SharePoint backend for data storage and workflow management, providing real-time updates to users and administrators. The goal was to reduce paperwork, improve response times, and provide a clear overview of maintenance statuses.",
         technologies: [
             "Flutter",
             "Dart",
-            "SharePoint API Integration",
-            "Provider State Management",
+            "SharePoint API",
+            "GetX State Management",
+            "MSAL Auththentication",
         ],
-        liveLink: null, // Example: "https://example.com/fleet-app-demo"
-        repoLink: null, // Example: "https://github.com/your-repo/fleet-app"
     },
     {
         slug: "bill-splitter-app",
@@ -42,12 +41,17 @@ export const projectsData = [
             },
             {
                 src: "/screenshots/splitup_sc2.png",
-                alt: "SplitUp Add Bill Screen",
+                alt: "Assign Screen",
+            },
+            {
+                src: "/screenshots/splitup_sc3.png",
+                alt: "Share Bill Screen",
             },
         ],
         longDesc:
-            "A user-friendly mobile app designed to simplify splitting bills among friends and contacts. It helps users keep track of shared expenses and manage informal debts, ensuring everyone pays their fair share. Features include contact integration, expense categorization, and payment tracking.",
-        technologies: ["Flutter", "Dart", "SQLite", "Shared Preferences"],
+            "A mobile app designed to simplify splitting bills among friends and contacts. I made this for a final capstone project for my internship and it helps users keep track of shared expenses and manage informal debts, ensuring everyone pays their fair share. Features include contact integration, expense categorization, and payment tracking.",
+        technologies: ["Flutter", "Dart", "Shared Preferences"],
+        repoLink: "https://github.com/sadgezy/SplitUp-Bill-splitting-app",
     },
     {
         slug: "elbeds",
@@ -56,12 +60,16 @@ export const projectsData = [
         coverImage: "/elbeds_logo.png",
         screenshots: [
             {
-                // src: "/screenshots/elbeds/home.jpg",
-                alt: "ELBeds Home Page",
+                src: "/screenshots/elbeds1.png",
+                alt: "ELBeds Welcome Page",
             },
             {
-                // src: "/screenshots/elbeds/listing.jpg",
-                alt: "ELBeds Listing Page",
+                src: "/screenshots/elbeds2.png",
+                alt: "ELBeds Login Page",
+            },
+            {
+                src: "/screenshots/elbeds3.png",
+                alt: "ELBeds SignUp Page",
             },
         ],
         longDesc:
@@ -72,13 +80,12 @@ export const projectsData = [
             "Firebase Firestore",
             "Google Maps API (Basic Integration)",
         ],
+        liveLink: "https://elbeds.vercel.app",
+        repoLink: "https://github.com/sadgezy/CMSC-128-STALS",
     },
-    // Add more projects as needed
 ];
 
-// Helper function to get a project by its slug
 export const getProjectBySlug = async (slug) => {
-    // Simulate an async operation (like fetching from an API)
     return Promise.resolve(
         projectsData.find((project) => project.slug === slug)
     );

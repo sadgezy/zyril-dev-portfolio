@@ -13,7 +13,8 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+    const params = await props.params;
     // Ensure params is "awaited" or resolved before accessing its properties,
     // as per Next.js warning for dynamic APIs in async functions.
     await Promise.resolve(); // or await null;
@@ -29,9 +30,10 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function ProjectDetailPage({ params }) {
+export default async function ProjectDetailPage(props) {
+    const params = await props.params;
     await Promise.resolve();
-    const project = getProjectBySlug(params.slug);
+    const project = await getProjectBySlug(params.slug);
 
     if (!project) {
         return (

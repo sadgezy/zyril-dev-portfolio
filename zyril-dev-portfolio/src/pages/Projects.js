@@ -1,13 +1,27 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // Import Link
-import { projectsData } from "../data/projectsData"; // Import the centralized data
+import Link from "next/link";
+import { projectsData } from "../data/projectsData";
+import { SiFlutter, SiFirebase, SiGooglemaps, SiDart } from "react-icons/si";
+
+import { FaCodeBranch } from "react-icons/fa";
+
+const technologyIconMap = {
+    Flutter: <SiFlutter title="Flutter" className="text-sky-400" />,
+    Dart: <SiDart title="Dart" className="text-sky-500" />,
+    "Firebase Firestore": (
+        <SiFirebase title="Firebase Firestore" className="text-orange-400" />
+    ),
+    "Google Maps API (Basic Integration)": (
+        <SiGooglemaps title="Google Maps API" className="text-green-500" />
+    ),
+};
 
 const Projects = () => {
     return (
         <section
             id="projects"
-            className="min-h-screen py-20 px-4 md:px-12 pt-24 md:pt-28 flex flex-col items-center bg-neutral-900/90 text-center"
+            className="min-h-screen py-20 px-4 md:px-12 pt-24 md:pt-28 flex flex-col items-center bg-neutral-900/70 text-center"
         >
             <h2 className="mb-2 text-3xl md:text-4xl font-bold text-neutral-100">
                 My Projects
@@ -30,7 +44,7 @@ const Projects = () => {
                     if (
                         project.title ===
                             "Fleet Maintenance and Tracking App" ||
-                        project.title === "Bill Splitter App"
+                        project.title === "SplitUp!"
                     ) {
                         imgStyle.objectFit = "contain";
                     }
@@ -57,8 +71,8 @@ const Projects = () => {
                                             ? project.screenshots[0].src
                                             : "/placeholder.png")
                                     } // Use coverImage or first screenshot
-                                    width={500}
-                                    height={500}
+                                    width={400}
+                                    height={400}
                                     alt={project.title}
                                     style={imgStyle}
                                     className="rounded-t-xl"
@@ -70,6 +84,46 @@ const Projects = () => {
                                     <p className="text-sm text-neutral-400 leading-relaxed">
                                         {project.desc}
                                     </p>
+                                    {/* Technologies Section */}
+                                    {project.technologies &&
+                                        project.technologies.length > 0 && (
+                                            <div className="mt-4 pt-3 border-t border-neutral-700/50">
+                                                <h4 className="text-xs text-neutral-500 mb-2 font-medium">
+                                                    Built with:
+                                                </h4>
+                                                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                                                    {project.technologies.map(
+                                                        (tech) => (
+                                                            <div
+                                                                key={tech}
+                                                                className="flex items-center text-xs text-neutral-300"
+                                                                title={tech}
+                                                            >
+                                                                {technologyIconMap[
+                                                                    tech
+                                                                ] ? (
+                                                                    <span className="mr-1 text-base">
+                                                                        {" "}
+                                                                        {/* Increased icon size slightly */}
+                                                                        {
+                                                                            technologyIconMap[
+                                                                                tech
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                ) : (
+                                                                    <FaCodeBranch className="mr-1 text-neutral-400 text-sm" />
+                                                                )}
+                                                                {/* Display name for unmapped or always show name */}
+                                                                {/* {!technologyIconMap[tech] && tech}  // Option to show name if no icon */}
+                                                                {tech}{" "}
+                                                                {/* Always show name next to icon/generic icon */}
+                                                            </div>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
                                 </div>
                             </div>
                         </Link>
