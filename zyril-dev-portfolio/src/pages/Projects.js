@@ -42,11 +42,15 @@ const Projects = () => {
                     };
 
                     if (
-                        project.title ===
-                            "Fleet Maintenance and Tracking App" ||
+                        project.title === "FGV Central" ||
                         project.title === "SplitUp!"
                     ) {
                         imgStyle.objectFit = "contain";
+                    }
+
+                    // Add specific padding for SplitUp! logo to give it more space
+                    if (project.title === "SplitUp!") {
+                        imgStyle.padding = "1.25rem";
                     }
 
                     if (project.title === "ELBeds") {
