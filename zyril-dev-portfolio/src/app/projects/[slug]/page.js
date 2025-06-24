@@ -1,10 +1,9 @@
 import { projectsData, getProjectBySlug } from "../../../data/projectsData";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa"; // Example icons
-import DeviceMockup from "../../../components/DeviceMockup"; // Import the new component
+import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import DeviceMockup from "../../../components/DeviceMockup";
 
-// Function to generate static paths if you're using Next.js < 13 or want to pre-render
 // For App Router, this helps Next.js know which slugs to pre-render at build time.
 export async function generateStaticParams() {
     const projects = await Promise.resolve(projectsData);
@@ -16,8 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(props) {
     const params = await props.params;
     // Ensure params is "awaited" or resolved before accessing its properties,
-    // as per Next.js warning for dynamic APIs in async functions.
-    await Promise.resolve(); // or await null;
+    await Promise.resolve();
     const project = await getProjectBySlug(params.slug);
     if (!project) {
         return {
@@ -26,7 +24,7 @@ export async function generateMetadata(props) {
     }
     return {
         title: `${project.title} - Zyril Tamargo`,
-        description: project.desc, // Or a more detailed description for SEO
+        description: project.desc,
     };
 }
 
@@ -104,7 +102,6 @@ export default async function ProjectDetailPage(props) {
                     </p>
                     {/* Long Description */}
                     <div className="prose prose-invert prose-lg max-w-none text-neutral-200 mb-8">
-                        {/* Using a simple paragraph for longDesc. For markdown, you'd use a library. */}
                         {project.longDesc
                             .split("\n")
                             .map((paragraph, index) => (

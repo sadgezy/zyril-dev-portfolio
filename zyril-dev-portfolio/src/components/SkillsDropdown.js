@@ -78,7 +78,6 @@ const SkillCategory = ({ category, skills }) => {
                             {skill.details && skill.details.length > 0 && (
                                 <ul className="list-none pl-8 mt-2 space-y-1.5">
                                     {" "}
-                                    {/* Adjusted padding and spacing */}
                                     {skill.details.map((detail, idx) => (
                                         <li
                                             key={detail.name || idx}

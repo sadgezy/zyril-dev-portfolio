@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import SkillsDropdown from "./SkillsDropdown"; // Import the new component
+import SkillsDropdown from "./SkillsDropdown";
 
 const Contact = () => {
     return (
@@ -27,7 +27,6 @@ const Contact = () => {
             {/* Social Links */}
             <div className="flex gap-8 mt-12">
                 {" "}
-                {/* Increased gap and margin-top for better spacing */}
                 <a
                     href="https://github.com/sadgezy"
                     target="_blank"

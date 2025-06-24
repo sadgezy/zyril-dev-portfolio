@@ -3,12 +3,11 @@ import HomeSection from "../components/HomeSection";
 import Contact from "../components/Contact";
 
 export default function Home() {
-  return (
-    <>
-      {/* Sections will be rendered in this order */}
-      <HomeSection />
-      <About />
-      <Contact />
-    </>
-  );
+    return (
+        <>
+            <HomeSection />
+            <About />
+            <Contact />
+        </>
+    );
 }

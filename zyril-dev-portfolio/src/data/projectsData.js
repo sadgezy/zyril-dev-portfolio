@@ -5,7 +5,6 @@ export const projectsData = [
         desc: "Request and track vehicle repairs via SharePoint backend.",
         coverImage: "/fgv_logo.png",
         screenshots: [
-            // For project detail page
             {
                 src: "/screenshots/fgv_sc1.png",
                 alt: "FGV App Login Screen",

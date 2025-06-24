@@ -13,7 +13,6 @@ const blurAmount = "8px";
 const fadeBlurAmount = "4px";
 
 // Define appBasePath similar to Navbar.js
-// This ensures path comparisons work correctly if deployed to a subdirectory (e.g., GitHub Pages)
 const appBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const homeVariants = {
