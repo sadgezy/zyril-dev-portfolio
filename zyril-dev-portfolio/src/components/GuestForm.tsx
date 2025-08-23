@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import SubmitButton from "./submit_button";
 import CircularSpinner from "./LoadingSpinner";
+import { fontMap } from "../app/fonts";
 
 const fontOptions = [
   "Bangers",
@@ -163,6 +164,7 @@ export default function GuestForm() {
                 placeholder="Message"
                 required
                 rows={4}
+                style={{ fontFamily: formData.Font }}
                 className="border-b border-gray-400 focus:border-blue-400 focus:outline-none px-1 py-4 placeholder-gray-500 text-gray-900 resize-none w-full"
               />
             </div>
@@ -172,19 +174,19 @@ export default function GuestForm() {
               <h3 className="font-semibold text-sm text-black text-center">
                 Customize how your message looks!
               </h3>
-
+              
               <select
                 name="Font"
                 value={formData.Font}
                 onChange={handleChange}
                 className="w-full p-3 border rounded text-black bg-white"
-                style={{ fontFamily: formData.Font }}
+                style={{ fontFamily: fontMap[formData.Font] }}
               >
                 {fontOptions.map((font) => (
                   <option
                     key={font}
                     value={font}
-                    style={{ fontFamily: font, color: "black" }}
+                    style={{ fontFamily: fontMap[font], color: "black" }}
                   >
                     {font}
                   </option>

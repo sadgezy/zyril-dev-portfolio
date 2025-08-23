@@ -44,39 +44,39 @@ p {
 
     @font-face {
   font-family: "Bangers";
-  src: url("/fonts/Bangers-Regular.ttf") format("truetype");
+  src: url("../fonts/Bangers-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Caveat";
-  src: url("/fonts/Caveat-Regular.ttf") format("truetype");
+  src: url("../fonts/Caveat-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "DM Serif Text";
-  src: url("/fonts/DMSerifText-Regular.ttf") format("truetype");
+  src: url("../fonts/DMSerifText-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Funnel Display";
-  src: url("/fonts/FunnelDisplay-VariableFont_wght.ttf") format("truetype");
+  src: url("../fonts/FunnelDisplay-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: "Imperial Script";
-  src: url("/fonts/ImperialScript-Regular.ttf") format("truetype");
+  src: url("../fonts/ImperialScript-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Indie Flower";
-  src: url("/fonts/IndieFlower-Regular.ttf") format("truetype");
+  src: url("../fonts/IndieFlower-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Luckiest Guy";
-  src: url("/fonts/LuckiestGuy-Regular.ttf") format("truetype");
+  src: url("../fonts/LuckiestGuy-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Monsieur La Doulaise";
-  src: url("/fonts/MonsieurLaDoulaise-Regular.ttf") format("truetype");
+  src: url("../fonts/MonsieurLaDoulaise-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
