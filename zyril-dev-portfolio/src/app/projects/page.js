@@ -1,4 +1,6 @@
 import Projects from "../../pages/Projects";
+import Navbar from "../../components/Navbar";
+import AnimatedBackground from "../../components/AnimatedBackground";
 
 export const metadata = {
     title: "Zyril Tamargo - Projects", // Specific title for the projects page
@@ -7,9 +9,9 @@ export const metadata = {
 
 export default function ProjectsPage() {
     return (
-        <div className="pt-20 md:pt-24">
+ <><AnimatedBackground /><Navbar /><div className="pt-20 md:pt-24">
             {" "}
             <Projects />
-        </div>
+        </div></>
     );
 }
