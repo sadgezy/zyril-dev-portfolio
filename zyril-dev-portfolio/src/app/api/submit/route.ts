@@ -3,8 +3,10 @@ export async function POST(request: Request) {
     const body = await request.json();
     console.log("✅ Received request body:", body);
 
-    const scriptUrl =
-      "https://script.google.com/macros/s/AKfycbyqEB_gBq_lba9U4PQPqTdig2nXqnbQqHS05bZB99MO1qhDQXOHu8UOOLIjPswI08DLYA/exec";
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+    if (!scriptUrl) {
+      throw new Error("Google Script URL is not defined in environment variables");
+    }
     const response = await fetch(scriptUrl, {
       method: "POST",
       headers: {
