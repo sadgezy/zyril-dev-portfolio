@@ -5,6 +5,7 @@ import SubmitButton from "./submit_button";
 import CircularSpinner from "./LoadingSpinner";
 import { fontMap } from "../app/fonts";
 import { Instrument_Sans } from 'next/font/google';
+import Image from "next/image";
 
 const ins_sans = Instrument_Sans({
   weight: '400',
@@ -276,7 +277,7 @@ export default function GuestForm() {
           </div>
 
           {/* Stickers bottom-right */}
-          <img
+          <Image
             src="/Stickers.png"
             alt=""
             className="absolute -bottom-15 -right-20 pointer-events-none"
