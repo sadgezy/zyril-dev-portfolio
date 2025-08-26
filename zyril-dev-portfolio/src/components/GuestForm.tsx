@@ -1,9 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SubmitButton from "./submit_button";
 import CircularSpinner from "./LoadingSpinner";
 import { fontMap } from "../app/fonts";
+import { Instrument_Sans } from 'next/font/google';
+
+const ins_sans = Instrument_Sans({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 const fontOptions = [
   "Bangers",
@@ -78,36 +84,50 @@ export default function GuestForm() {
       </div>
     );
   }
-  if (submitted) {
-      return (
-        <div className="text-center space-y-4">
-          <p className="text-black-600 text-lg font-semibold">
-            Thank you for signing the guestbook!
-          </p>
-          <button
-            onClick={() => {
-              // Reset form fields and state
-              setFormData({
-              Name: "",
-              Email: "",
-              RightText: "",
-              IG: "",
-              Font: fontOptions[0],
-              PatrnColor1: "#FFFCB0",
-              PatrnColor2: "#FF9FB2",
-              TextColor1: "#92DCE5",
-              TextColor2: "#0095FF",
-              eye_color: "#241C51",
-              });
-              setSubmitted(false);
-            }}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Submit another entry
-          </button>
-        </div>
-      );
+
+  useEffect(() => {
+    if (submitted) {
+      const timeout = setTimeout(() => {
+        setFormData({
+          Name: "",
+          Email: "",
+          RightText: "",
+          IG: "",
+          Font: fontOptions[0],
+          PatrnColor1: "#FFFCB0",
+          PatrnColor2: "#FF9FB2",
+          TextColor1: "#92DCE5",
+          TextColor2: "#0095FF",
+          eye_color: "#241C51",
+        });
+        setSubmitted(false);
+      }, 2500);
+      return () => clearTimeout(timeout);
     }
+  }, [submitted]);
+
+  if (submitted) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div
+          className="flex flex-col items-center justify-center px-10 py-12 bg-no-repeat bg-center bg-contain"
+          style={{
+            backgroundImage: "url('/ty_bg.png')",
+            minWidth: 550,
+            minHeight: 420,
+          }}
+        >
+        <p
+          className={`${ins_sans.className} text-black drop-shadow-md mt-12 text-center`}
+        >
+          We’ve gotten your form. Thanks for leaving a mark!
+          <br />
+          You will now be redirected to the home page.
+        </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col items-center py-10">
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -204,14 +224,14 @@ export default function GuestForm() {
                     name="TextColor1"
                     value={formData.TextColor1}
                     onChange={handleChange}
-                    className="w-10 h-10 border rounded cursor-pointer"
+                    className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
                   />
                   <input
                     type="color"
                     name="TextColor2"
                     value={formData.TextColor2}
                     onChange={handleChange}
-                    className="w-10 h-10 border rounded cursor-pointer"
+                    className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
                   />
                 </div>
               </div>
@@ -227,14 +247,14 @@ export default function GuestForm() {
                     name="PatrnColor1"
                     value={formData.PatrnColor1}
                     onChange={handleChange}
-                    className="w-10 h-10 border rounded cursor-pointer"
+                    className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
                   />
                   <input
                     type="color"
                     name="PatrnColor2"
                     value={formData.PatrnColor2}
                     onChange={handleChange}
-                    className="w-10 h-10 border rounded cursor-pointer"
+                    className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
                   />
                 </div>
               </div>
@@ -249,7 +269,7 @@ export default function GuestForm() {
                   name="eye_color"
                   value={formData.eye_color}
                   onChange={handleChange}
-                  className="w-10 h-10 border rounded cursor-pointer"
+                  className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
                 />
               </div>
             </div>
