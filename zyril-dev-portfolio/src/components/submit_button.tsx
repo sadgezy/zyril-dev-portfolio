@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type SubmitButtonProps = {
   submitted: boolean;
   loading: boolean;
@@ -28,14 +30,14 @@ export default function SubmitButton({ submitted, loading }: SubmitButtonProps) 
       )}
 
       {/* Decorative assets */}
-      <img
+      <Image
         src="/eyes.png"
         alt=""
         className={`absolute bottom-0 left-0 w-8 h-8 transition-all duration-500 pointer-events-none
           ${showAssets ? "opacity-100 -translate-x-4 translate-y-4" : "opacity-0 -translate-x-1 translate-y-1"}
           group-hover:opacity-100 group-hover:-translate-x-4 group-hover:translate-y-4`}
       />
-      <img
+      <Image
         src="/diamonds.png"
         alt=""
         className={`absolute top-0 right-0 w-8 h-10 transition-all duration-500 pointer-events-none

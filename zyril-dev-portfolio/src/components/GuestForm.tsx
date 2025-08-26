@@ -5,6 +5,7 @@ import SubmitButton from "./submit_button";
 import CircularSpinner from "./LoadingSpinner";
 import { fontMap } from "../app/fonts";
 import { Instrument_Sans } from 'next/font/google';
+import Image from "next/image";
 
 const ins_sans = Instrument_Sans({
   weight: '400',
@@ -52,7 +53,6 @@ export default function GuestForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
-    setSubmitted(true);
     setLoading(true);
 
     fetch("/api/submit", {
@@ -60,6 +60,9 @@ export default function GuestForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
+      .then(() => {
+        setSubmitted(true);
+      })
       .catch((err) => {
         console.error(err);
         alert("An error occurred.");
@@ -68,6 +71,28 @@ export default function GuestForm() {
         setLoading(false);
       });
   };
+
+  useEffect(() => {
+  if (submitted) {
+    const timeout = setTimeout(() => {
+      setFormData({
+        Name: "",
+        Email: "",
+        RightText: "",
+        IG: "",
+        Font: fontOptions[0],
+        PatrnColor1: "#FFFCB0",
+        PatrnColor2: "#FF9FB2",
+        TextColor1: "#92DCE5",
+        TextColor2: "#0095FF",
+        eye_color: "#241C51",
+      });
+      setSubmitted(false);
+    }, 2500);
+    return () => clearTimeout(timeout);
+  }
+  }, [submitted]);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -85,26 +110,6 @@ export default function GuestForm() {
     );
   }
 
-  useEffect(() => {
-    if (submitted) {
-      const timeout = setTimeout(() => {
-        setFormData({
-          Name: "",
-          Email: "",
-          RightText: "",
-          IG: "",
-          Font: fontOptions[0],
-          PatrnColor1: "#FFFCB0",
-          PatrnColor2: "#FF9FB2",
-          TextColor1: "#92DCE5",
-          TextColor2: "#0095FF",
-          eye_color: "#241C51",
-        });
-        setSubmitted(false);
-      }, 2500);
-      return () => clearTimeout(timeout);
-    }
-  }, [submitted]);
 
   if (submitted) {
     return (
@@ -276,7 +281,7 @@ export default function GuestForm() {
           </div>
 
           {/* Stickers bottom-right */}
-          <img
+          <Image
             src="/Stickers.png"
             alt=""
             className="absolute -bottom-15 -right-20 pointer-events-none"

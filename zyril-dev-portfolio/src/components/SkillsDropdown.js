@@ -32,7 +32,7 @@ const iconComponents = {
     databases: FaDatabase,
     agile: FaProjectDiagram,
     m365: FaMicrosoft,
-    sharepoint: SiMicrosoftsharepoint,
+    sharepoint: FaMicrosoft,
     webdesign: FaPalette,
     uiux: FaPaintBrush,
     javascript: IoLogoJavascript,

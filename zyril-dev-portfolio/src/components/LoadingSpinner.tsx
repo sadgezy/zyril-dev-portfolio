@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-
+import Image from "next/image";
 interface CircularSpinnerProps {
   size?: number;       // Diameter of the circle
   dotSize?: number;    // Size of each PNG
@@ -40,7 +40,7 @@ export default function CircularSpinner({
               animationDelay: `${delay}s`,
             }}
           >
-            <img
+            <Image
               src={assetUrl}
               alt="spinner dot"
               style={{
