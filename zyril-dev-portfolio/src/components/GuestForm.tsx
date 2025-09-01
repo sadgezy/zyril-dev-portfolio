@@ -60,16 +60,12 @@ export default function GuestForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
         })
-            .then(() => {
-                setSubmitted(true);
-            })
+            .then(() => setSubmitted(true))
             .catch((err) => {
                 console.error(err);
                 alert("An error occurred.");
             })
-            .finally(() => {
-                setLoading(false);
-            });
+            .finally(() => setLoading(false));
     };
 
     useEffect(() => {
@@ -95,16 +91,16 @@ export default function GuestForm() {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-[400px]">
-                <div className="bg-white rounded-2xl shadow-lg px-12 py-10 flex flex-col items-center">
+            <div className="flex items-center justify-center min-h-[400px] px-4">
+                <div className="bg-white rounded-2xl shadow-lg px-8 sm:px-12 py-8 sm:py-10 flex flex-col items-center">
                     <CircularSpinner
-                        size={170}
-                        dotSize={90}
+                        size={150}
+                        dotSize={70}
                         dotCount={3}
                         assetUrl="/shark.png"
                         speed={2}
                     />
-                    <p className="text-lg text-black font-semibold">
+                    <p className="text-base sm:text-lg text-black font-semibold mt-4">
                         Submitting your entry...
                     </p>
                 </div>
@@ -114,17 +110,18 @@ export default function GuestForm() {
 
     if (submitted) {
         return (
-            <div className="flex items-center justify-center min-h-[400px]">
+            <div className="flex items-center justify-center min-h-[400px] px-4">
                 <div
-                    className="flex flex-col items-center justify-center px-10 py-12 bg-no-repeat bg-center bg-contain"
+                    className="flex flex-col items-center justify-center px-6 sm:px-10 py-10 bg-no-repeat bg-center bg-contain"
                     style={{
                         backgroundImage: "url('/ty_bg.png')",
-                        minWidth: 550,
-                        minHeight: 420,
+                        minWidth: "100%",
+                        maxWidth: "550px",
+                        minHeight: 320,
                     }}
                 >
                     <p
-                        className={`${ins_sans.className} text-black drop-shadow-md mt-12 text-center`}
+                        className={`${ins_sans.className} text-black drop-shadow-md mt-6 sm:mt-12 text-center text-sm sm:text-base`}
                     >
                         We’ve gotten your form. Thanks for leaving a mark!
                         <br />
@@ -134,30 +131,31 @@ export default function GuestForm() {
             </div>
         );
     }
+
     return (
-        <div className="flex flex-col items-center py-10">
+        <div className="flex flex-col items-center py-6 sm:py-10 px-4">
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center w-full"
             >
-                {/* Notebook page container */}
+                {/* Notebook container */}
                 <div
-                    className="top-20 relative w-full max-w-[1000px] min-h-[600px]  bg-no-repeat bg-contain flex flex-col items-center justify-center"
+                    className="relative top-12 w-full max-w-[1000px] min-h-[600px] bg-no-repeat bg-contain flex flex-col items-center justify-center px-4 sm:px-6 md:px-12"
                     style={{ backgroundImage: "url('/form_background.png')" }}
                 >
-                    {/* Overlapping title */}
-                    <h1 className="absolute -top-40 left-1/2 -translate-x-1/2">
+                    {/* Title */}
+                    <h1 className="absolute -top-28 sm:-top-40 left-1/2 -translate-x-1/2 w-[70%] sm:w-[500px]">
                         <div
-                            className="relative w-[600px] min-h-[300px] bg-no-repeat bg-contain"
+                            className="relative w-full min-h-[200px] sm:min-h-[300px] bg-no-repeat bg-contain"
                             style={{
                                 backgroundImage: "url('/display_title.png')",
                             }}
                         ></div>
                     </h1>
 
-                    <div className="grid grid-cols-2 gap-12 px-12 py-8">
-                        {/* Left column – text info */}
-                        <div className="space-y-6 pl-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 w-full py-6 sm:py-8">
+                        {/* Left column */}
+                        <div className="space-y-6 md:pl-6">
                             <input
                                 type="text"
                                 name="Name"
@@ -200,8 +198,8 @@ export default function GuestForm() {
                             />
                         </div>
 
-                        {/* Right column – font & color pickers */}
-                        <div className="bg-blue-50 p-6 rounded-lg space-y-4">
+                        {/* Right column */}
+                        <div className="bg-blue-50 p-4 sm:p-6 rounded-lg space-y-4">
                             <h3 className="font-semibold text-sm text-black text-center">
                                 Customize how your message looks!
                             </h3>
@@ -238,14 +236,14 @@ export default function GuestForm() {
                                         name="TextColor1"
                                         value={formData.TextColor1}
                                         onChange={handleChange}
-                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
+                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer"
                                     />
                                     <input
                                         type="color"
                                         name="TextColor2"
                                         value={formData.TextColor2}
                                         onChange={handleChange}
-                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
+                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -261,14 +259,14 @@ export default function GuestForm() {
                                         name="PatrnColor1"
                                         value={formData.PatrnColor1}
                                         onChange={handleChange}
-                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
+                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer"
                                     />
                                     <input
                                         type="color"
                                         name="PatrnColor2"
                                         value={formData.PatrnColor2}
                                         onChange={handleChange}
-                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
+                                        className="w-10 h-10 border-4 border-black rounded cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -283,31 +281,31 @@ export default function GuestForm() {
                                     name="eye_color"
                                     value={formData.eye_color}
                                     onChange={handleChange}
-                                    className="w-10 h-10 border-4 border-black rounded cursor-pointer color-input"
+                                    className="w-10 h-10 border-4 border-black rounded cursor-pointer"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    {/* Stickers bottom-right */}
+                    {/* Stickers */}
                     <Image
                         src="/Stickers.png"
                         alt=""
-                        className="absolute -bottom-15 -right-20 pointer-events-none"
-                        width={250}
-                        height={250}
+                        className="absolute bottom-2 right-2 sm:-bottom-10 sm:-right-20 pointer-events-none"
+                        width={220}
+                        height={150}
                     />
                     <Image
                         src="/Project_eleven_studio_logo.png"
                         alt=""
-                        className="absolute -bottom-10 -left-20 pointer-events-none -rotate-12 drop-shadow-[0_4px_2px_rgba(0,0,0,0.3)]"
-                        width={200}
-                        height={200}
+                        className="absolute bottom-2 left-2 sm:-bottom-10 sm:-left-20 pointer-events-none -rotate-12 drop-shadow-[0_4px_2px_rgba(0,0,0,0.3)]"
+                        width={220}
+                        height={120}
                     />
                 </div>
 
-                {/* Submit button BELOW the notebook */}
-                <div className="mt-10">
+                {/* Submit button */}
+                <div className="mt-6 sm:mt-10">
                     <SubmitButton submitted={submitted} loading={loading} />
                 </div>
             </form>
