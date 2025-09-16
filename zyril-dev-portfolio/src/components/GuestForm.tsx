@@ -235,7 +235,7 @@ export default function GuestForm() {
                                 width={90}
                                 height={132}
                                 priority
-                                className="absolute sm:hidden right-8 bottom-15 w-[115px] h-auto"
+                                className="absolute sm:hidden right-8 bottom-8 w-[115px] h-auto"
                                 style={{ zIndex: 2 }}
                             />
                             <Image
@@ -244,7 +244,7 @@ export default function GuestForm() {
                                 width={90}
                                 height={124}
                                 priority
-                                className="absolute sm:hidden right-25 bottom-18 w-[85px] h-auto -rotate-12 drop-shadow-[0_4px_2px_rgba(0,0,0,0.3)]"
+                                className="absolute sm:hidden right-25 bottom-10 w-[85px] h-auto -rotate-12 drop-shadow-[0_4px_2px_rgba(0,0,0,0.3)]"
                                 style={{ zIndex: 2 }}
                             />
 
