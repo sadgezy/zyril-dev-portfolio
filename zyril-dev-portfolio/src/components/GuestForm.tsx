@@ -28,6 +28,7 @@ export default function GuestForm() {
     const [formData, setFormData] = useState({
         Name: "",
         Email: "",
+        Newsletter: true,
         RightText: "",
         IG: "",
         Font: fontOptions[0],
@@ -74,6 +75,7 @@ export default function GuestForm() {
                 setFormData({
                     Name: "",
                     Email: "",
+                    Newsletter: true,
                     RightText: "",
                     IG: "",
                     Font: fontOptions[0],
@@ -176,6 +178,24 @@ export default function GuestForm() {
                                 className="border-b border-gray-400 focus:border-blue-400 focus:outline-none px-1 py-2 placeholder-gray-500 text-gray-900 w-full"
                             />
 
+                            {/* Newsletter checkbox */}
+                           <div className="flex items-center gap-2 mt-1">
+                              <input
+                                id="newsletter"
+                                type="checkbox"
+                                name="newsletter"
+                                checked={formData.Newsletter}
+                                onChange={(e) =>
+                                  setFormData((prev) => ({ ...prev, Newsletter: e.target.checked }))
+                                }
+                                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                              />
+                              <label htmlFor="newsletter" className="text-xs text-gray-600">
+                               Join the Project Eleven Club for exclusive updates, event invites, and discounts on sustainability courses (you can unsubscribe anytime)
+                              </label>
+                            </div>
+
+
                             <input
                                 type="text"
                                 name="IG"
@@ -190,7 +210,7 @@ export default function GuestForm() {
                                 name="RightText"
                                 value={formData.RightText}
                                 onChange={handleChange}
-                                placeholder="Message"
+                                placeholder="What inspires your creativity?"
                                 required
                                 rows={4}
                                 style={{ fontFamily: formData.Font }}
