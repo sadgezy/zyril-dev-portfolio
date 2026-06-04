@@ -2,8 +2,12 @@
 const nextConfig = {
   output: 'export',
   
-  // Note: Because your site is hosted at github.io/zyril-dev-portfolio
-  // you will likely need to set the basePath so your CSS and images load correctly:
+  // Add this block to disable server-side image optimization
+  images: {
+    unoptimized: true,
+  },
+
+  // Note: Keep your basePath here if you added it in the previous step!
   // basePath: '/zyril-dev-portfolio', 
 };
 
