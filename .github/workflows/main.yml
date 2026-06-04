@@ -35,12 +35,6 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Updated the path to grab the 'out' folder from the subfolder
-          path: ./zyril-dev-portfolio/out
-
   deploy:
     needs: build # Depends on the build job completing successfully
     runs-on: ubuntu-latest
