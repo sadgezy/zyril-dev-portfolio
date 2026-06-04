@@ -35,10 +35,6 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Add .nojekyll file
-        # Updated the path to look inside the subfolder
-        run: touch ./zyril-dev-portfolio/out/.nojekyll
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
