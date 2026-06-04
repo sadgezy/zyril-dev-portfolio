@@ -8,7 +8,7 @@ const nextConfig = {
   },
 
   // Note: Keep your basePath here if you added it in the previous step!
-  // basePath: '/zyril-dev-portfolio', 
+  basePath: '/zyril-dev-portfolio', 
 };
 
 export default nextConfig;
