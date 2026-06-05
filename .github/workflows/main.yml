@@ -1,60 +1,58 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main # Or your default branch (e.g., master)
-  workflow_dispatch: # Allows manual triggering from the Actions tab
+    push:
+        branches:
+            - main # Or your default branch (e.g., master)
+    workflow_dispatch: # Allows manual triggering from the Actions tab
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: './zyril-dev-portfolio/package-lock.json'
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "npm"
+                  cache-dependency-path: "./package-lock.json"
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./zyril-dev-portfolio
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build project
-        run: npm run build
-        working-directory: ./zyril-dev-portfolio
-        env:
-          NODE_ENV: production
+            - name: Build project
+              run: npm run build
+              env:
+                  NODE_ENV: production
 
-      # --- THESE ARE THE MISSING STEPS ---
-      
-      - name: Add .nojekyll file
-        # Prevents GitHub Pages from ignoring Next.js hidden folders
-        run: touch ./zyril-dev-portfolio/out/.nojekyll
+            # --- THESE ARE THE MISSING STEPS ---
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # This grabs the folder Next.js just built and packages it for deployment
-          path: ./zyril-dev-portfolio/out
+            - name: Add .nojekyll file
+              # Prevents GitHub Pages from ignoring Next.js hidden folders
+              run: touch ./zyril-dev-portfolio/out/.nojekyll
 
-  deploy:
-    needs: build # Depends on the build job completing successfully
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} # Output the deployed URL
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4 # Official GitHub Action for deploying
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  # This grabs the folder Next.js just built and packages it for deployment
+                  path: ./zyril-dev-portfolio/out
+
+    deploy:
+        needs: build # Depends on the build job completing successfully
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }} # Output the deployed URL
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4 # Official GitHub Action for deploying
