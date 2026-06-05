@@ -20,6 +20,7 @@ function pseudoRandom(seed: number) {
 export default function BackgroundShapes({
     numColumns = 6,
     pillsPerColumn = 10,
+    blur = "",
     colors = [
         "#1E88E5",
         "#42A5F5",
